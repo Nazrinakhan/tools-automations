@@ -2,5 +2,6 @@ name: provision tool infra
 on: [push, workflow_dispatch]
 jobs:
   Provision:
-  steps:
-  - run: terraform --version
+    runs-on: ubuntu-latest
+    steps:
+    - run: terraform --version
