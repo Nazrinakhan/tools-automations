@@ -3,12 +3,12 @@ resource "aws_instance" "tool" {
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.tool-sg.id]
     tags = {
-            Name = "$(var.name).sg"
+            Name = "$(var.name)-sg"
     }
     }
 resource "aws_security_group" "tool-sg" {
-  name        = "$(var.name).sg"
-  description = "$(var.name).sg"
+  name        = "$(var.name)-sg"
+  description = "$(var.name)-sg"
 
 
 
@@ -25,5 +25,7 @@ resource "aws_security_group" "tool-sg" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     }
-
+     tags = {
+        Name = "${var.name}-sg"
+    }
     }
