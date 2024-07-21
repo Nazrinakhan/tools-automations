@@ -22,7 +22,7 @@ resource "aws_security_group" "tool-sg" {
     ingress {
     from_port        = 22
     to_port          = 22
-    protocol         = "-1"
+    protocol         = "TCP"
     cidr_blocks      = ["0.0.0.0/0"]
     }
      tags = {
