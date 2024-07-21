@@ -1,3 +1,3 @@
-module "tool-infra-create" {
+module "tool-infracreate" {
     source      ="./infra-create"
     }
