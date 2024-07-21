@@ -3,7 +3,7 @@ resource "aws_instance" "tool" {
     instance_type = var.instance_type
     }
 
-resource "aws_security_group" "tool.sg" {
+resource "aws_security_group" "tool-sg" {
   name        = "$(var.name).sg"
   description = "$(var.name).sg"
 
@@ -27,7 +27,7 @@ ingress {
     to_port          = 22
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-
+}
 
     tags = {
         Name = "$(var.name).sg"
