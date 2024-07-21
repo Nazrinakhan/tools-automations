@@ -10,7 +10,7 @@ resource "aws_security_group" "tool-sg" {
   tags = {
         Name = "$(var.name).sg"
 
-  }
+    }
 
   }
 
@@ -27,10 +27,10 @@ resource "aws_security_group" "tool-sg" {
     to_port          = 22
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-}
+    }
 
     tags = {
         Name = "$(var.name).sg"
 
-  }
+    }
   }
