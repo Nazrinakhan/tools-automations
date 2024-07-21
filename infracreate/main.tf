@@ -1,18 +1,15 @@
 resource "aws_instance" "tool" {
     ami               = data.aws_ami.rhel9.image_id
     instance_type = var.instance_type
+    vpc_security_group_ids = [aws_security_group.tool-sg.id]
+    tags = {
+            Name = "$(var.name).sg"
     }
-
+    }
 resource "aws_security_group" "tool-sg" {
   name        = "$(var.name).sg"
   description = "$(var.name).sg"
 
-  tags = {
-        Name = "$(var.name).sg"
-
-    }
-
-  }
 
 
     egress {
@@ -29,3 +26,4 @@ resource "aws_security_group" "tool-sg" {
     cidr_blocks      = ["0.0.0.0/0"]
     }
 
+    }
