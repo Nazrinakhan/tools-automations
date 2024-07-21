@@ -1,2 +1,2 @@
-variable "instance_type"
-variable "name"
+variable "instance_type" {}
+variable "name" {}
