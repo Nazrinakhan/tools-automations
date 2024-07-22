@@ -1,4 +1,5 @@
-
+variable "instance_type" {}
+variable "name" {}
 
 variable "tools" {
     default = {
