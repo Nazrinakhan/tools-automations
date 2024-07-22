@@ -1,2 +1,2 @@
-variable "instacne_type" {}
+variable "instance_type" {}
 variable "name" {}
