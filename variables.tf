@@ -1,11 +1,2 @@
-variable "tools" {
-    default = {
-
-        github-runner = {
-            instance_type = "t3.smaill"
-
-         }
-
-
-        }
-    }
+variable "instance_type" {}
+variable "name" {}
