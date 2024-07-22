@@ -1,4 +1,11 @@
-variable "instance_type" {
-    default = "t3.small"
+variable "tools" {
+    default = {
+
+        github-runner = {
+            instance_type = "t3.smaill"
+
+         }
+
+
+        }
     }
-variable "name" {}
