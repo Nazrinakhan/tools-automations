@@ -1,3 +1,6 @@
 module "tool-infra-create" {
-    source      ="./infra-create"
+    for_each        =var.tools
+    source          ="./infra-create"
+    name            =each.key
+    instance_type   =each.key["instance_type"]
     }
