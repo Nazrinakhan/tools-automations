@@ -3,7 +3,7 @@ variable "tools" {
     default = {
 
         github-runner = {
-            instance_type = "t3.smaill"
+            instance_type = "t3.small"
 
          }
 
