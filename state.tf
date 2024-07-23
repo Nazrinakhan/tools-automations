@@ -1,6 +1,11 @@
+terraform {
+    backend "s3" {
 
-     backend "s3" {
-       bucket = "devopsnai"
-       key    = "tools/terraform.tfstate"
-       region = "us-east-1"
-     }
+      bucket    = "devopsnai"
+      key       = "tools/terraform.tfstate"
+      region    =  "us-east-1"
+
+
+        }
+
+    }
