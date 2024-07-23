@@ -14,7 +14,7 @@
 
 - name: Download Github Cli Repo
   ansible.builtin.get_url:
-    src: https://cli.github.com/packages/rpm/gh-cli.repo
+    url: https://cli.github.com/packages/rpm/gh-cli.repo
     dest: /etc/yum.repos.d/gh-cli.repo
 
 - name: Install github cli
