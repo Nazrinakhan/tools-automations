@@ -50,6 +50,10 @@
   register: runner_count
   become_user: ec2-user
 
+- name: debug
+  debug:
+    msg: " {{ runner_count.stdout }}"
+
 - name: configure github runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token BJSRXE36H5KSGQJI3HKKPEDGUCBSW --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
