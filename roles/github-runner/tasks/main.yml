@@ -57,7 +57,7 @@
   when: runner_count.stdout == 0
 
 - name: Install Runner service
-  ansible.builtin.shell: ./svc.sh install nrunner ; /svc.sh start
+  ansible.builtin.shell: ./svc.sh install grunner ;  ./svc.sh start
   args:
     chdir: /actions-runner
     when: runner_count.stdout == 0
