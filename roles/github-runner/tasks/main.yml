@@ -36,7 +36,7 @@
 
 - name: print token
   ansible.builtin.debug:
-    msg: "{{ token }}"
+    msg: " {{ runner_count.stdout }}"
 
 - name: Install libicu deendency
   ansible.builtin.dnf:
