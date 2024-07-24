@@ -38,13 +38,26 @@
   ansible.builtin.debug:
     msg: BJSRXE36H5KSGQJI3HKKPEDGUCBSW
 
+
 - name: Install libicu deendency
   ansible.builtin.dnf:
     name: libicu
     state: latest
+
+- name: Get the runner count
+  ansible.builtin.dnf: |
+    gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/Nazrinakhan/actions/runners | jq .total_count |xargs
+  register: runner_count
 
 - name: configure github runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token BJSRXE36H5KSGQJI3HKKPEDGUCBSW --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
   become_user: nrunner
+  when: runner_count.stdout == 0
+
+- name: Install Runner service
+  ansible.builtin.shell: ./svc.sh install nrunner ; /svc.sh start
+  args:
+    chdir: /actions-runner
+    when: runner_count.stdout == 0
