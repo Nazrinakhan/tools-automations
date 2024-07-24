@@ -18,15 +18,16 @@
     dest: "/actions-runner"
     remote_src: yes
 
-- name: Download Github Cli Repo
-  ansible.builtin.get_url:
-    url: https://cli.github.com/packages/rpm/gh-cli.repo
-    dest: /etc/yum.repos.d/gh-cli.repo
+
 - name: Grab Token
   ansible.builtin.shell: |
     gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/Nazrinakhan/actions/runners/registration-token | jq .token
   register: out
 
-- name: print token
-  ansible.builtin.debug:
-    msg: "{{ out }}"
+- name: Install libicu deendency
+  ansible.builtin.dnf:
+    name: libicu
+    state: latest
+
+- name: configure github runner
+  ansible.builtin.shell:  ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --name ec2 --labels rhel --work _work
