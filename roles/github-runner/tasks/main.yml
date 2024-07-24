@@ -1,3 +1,9 @@
+# Following steps need to be run manually
+# sudo curl -L -o /etc/yum.repos.d/gh-cli.repo https://cli.github.com/packages/rpm/gh-cli.repo
+# sudo dnf install gh -y
+# gh auth login -s admin:org
+
+
 - name: setup prompt
   ansible.builtin.shell: set-prompt github runner
 
@@ -21,3 +27,10 @@
   ansible.builtin.dnf:
     name: gh-cli
     state: latest
+- name: Grab Token
+  ansible.builtin.shell: gh api  --method POST   -H "Accept: application/vnd.github+json"   -H "X-GitHub-Api-Version: 2022-11-28"   /orgs/Nazrinakhan/actions/runners/registration-token
+  register: out
+
+- name: print token
+  ansible.builtin.debug:
+    msg: "{{ out }}"
