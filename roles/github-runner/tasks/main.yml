@@ -36,7 +36,7 @@
 
 - name: print token
   ansible.builtin.debug:
-    msg: {{ token }}
+    msg: {{ "token" }}
 
 - name: Install libicu deendency
   ansible.builtin.dnf:
@@ -44,7 +44,7 @@
     state: latest
 
 - name: configure github runner
-  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ "token" }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
   become_user: nrunner
