@@ -37,4 +37,10 @@
 
 - name: configure github runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  args:
+  chdir: /path/to
+  register: config_result
 
+- name: Print configuration result
+  ansible.builtin.debug:
+      msg: "Configuration result: {{ config_result.stdout }}"
