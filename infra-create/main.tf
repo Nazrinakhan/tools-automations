@@ -7,12 +7,9 @@ resource "aws_instance" "tool" {
         Name = var.name
         }
     }
-resource "random_string" "unique_id" {
-  length  = 8
-  special = false
 }
 resource "aws_security_group" "tool-sg" {
-  name        = "{var.name}-sg-sg-${random_string.unique_id.result}"
+  name        = "{var.name}-sg${random_string.unique_id.result}"
   description = "Security group for ${var.name}"
 
 

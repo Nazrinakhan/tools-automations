@@ -10,12 +10,6 @@
   ansible.builtin.user:
     name: grunner
 
-- name: Create GitHub directory
-  ansible.builtin.file:
-    path: /actions-runner
-    state: directory
-  owner: grunner
-  group: grunner
 
 - name: Download & Extract GitHub runner
   ansible.builtin.unarchive:
