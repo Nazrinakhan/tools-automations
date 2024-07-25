@@ -35,10 +35,6 @@
     name: libicu
     state: latest
 
-- name: print token
-  ansible.builtin.debug:
-    msg: "GitHub registration token is: {{ out.stdout }}"
-
 - name: configure github runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
 
