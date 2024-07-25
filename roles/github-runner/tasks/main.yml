@@ -3,7 +3,6 @@
 # sudo dnf install gh -y
 # gh auth login -s admin:org
 
-
 - name: Setup prompt
   ansible.builtin.shell: set-prompt github runner
 
@@ -42,12 +41,9 @@
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
-  become: no
   become_user: grunner
   register: config_result
-  # Ensure the token variable is correctly passed.
 
 - name: Print configuration result
   ansible.builtin.debug:
     msg: "Configuration result: {{ config_result.stdout }}"
-  # Useful for debugging; ensure this prints the output you expect.
