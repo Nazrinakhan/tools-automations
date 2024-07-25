@@ -7,6 +7,10 @@
 - name: setup prompt
   ansible.builtin.shell: set-prompt github runner
 
+- name: Add githu runner user
+  ansible.builtin.user:
+    name:grunner
+
 - name: create github directory
   ansible.builtin.file:
     path: /actions-runner
