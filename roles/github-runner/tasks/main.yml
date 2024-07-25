@@ -36,9 +36,9 @@
     state: latest
 
 - name: configure github runner
-  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  ansible.builtin.shell: /actions-runner/config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
-  chdir: /path/to
+  chdir: actions-runner
   register: config_result
 
 - name: Print configuration result
