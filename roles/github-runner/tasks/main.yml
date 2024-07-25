@@ -10,7 +10,6 @@
   ansible.builtin.user:
     name: grunner
 
-
 - name: Create GitHub directory
   ansible.builtin.file:
     path: /actions-runner
@@ -38,7 +37,7 @@
     state: latest
 
 - name: Configure GitHub runner
-  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  ansible.builtin.shell: echo ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
   become_user: grunner
