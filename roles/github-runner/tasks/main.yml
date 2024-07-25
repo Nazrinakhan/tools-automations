@@ -9,7 +9,7 @@
 - name: Add GitHub runner user
   ansible.builtin.user:
     name: grunner
-    state: present
+
 
 - name: Create GitHub directory
   ansible.builtin.file:
