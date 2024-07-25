@@ -14,7 +14,7 @@ resource "random_string" "unique_id" {
 resource "aws_security_group" "tool-sg" {
   name        = "{var.name}-sg-sg-${random_string.unique_id.result}"
   description = "Security group for ${var.name}"
-  vpc_id      = var.vpc_id
+
 
  egress {
     from_port        = 0
