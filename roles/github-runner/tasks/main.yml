@@ -36,7 +36,7 @@
 
 - name: print token
   ansible.builtin.debug:
-    msg: BJSRXE36H5KSGQJI3HKKPEDGUCBSW
+    msg: {{ token }}
 
 
 - name: Install libicu deendency
@@ -55,7 +55,7 @@
     msg: " {{ runner_count.stdout }}"
 
 - name: configure github runner
-  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token BJSRXE36H5KSGQJI3HKKPEDGUCBSW --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
   become_user: nrunner
@@ -65,4 +65,4 @@
   ansible.builtin.shell: ./svc.sh install nrunner ;  ./svc.sh start
   args:
     chdir: /actions-runner
-    when: runner_count.stdout == 0
+  when: runner_count.stdout == 0
