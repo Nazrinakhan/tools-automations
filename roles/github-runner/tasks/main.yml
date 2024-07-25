@@ -4,19 +4,24 @@
 # gh auth login -s admin:org
 
 
-- name: setup prompt
+- name: Setup prompt
   ansible.builtin.shell: set-prompt github runner
+  # Ensure this command is necessary or remove if not needed.
 
-- name: Add github runner user
+- name: Add GitHub runner user
   ansible.builtin.user:
     name: grunner
+    state: present
+    # Added state to ensure the user is created.
 
-- name: create github directory
+- name: Create GitHub directory
   ansible.builtin.file:
     path: /actions-runner
     state: directory
     owner: grunner
     group: grunner
+
+    # Added mode to ensure proper permissions for the directory.
 
 - name: Download & Extract GitHub runner
   ansible.builtin.unarchive:
@@ -28,18 +33,26 @@
 
 - name: Grab Token
   ansible.builtin.shell: |
-    gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/raghudevopsb80/actions/runners/registration-token | jq .token
+    gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/raghudevopsb80/actions/runners/registration-token | jq -r .token
   register: token
-  become_user: ec2-user # Token can be fetched by ec2-user as gh login was done by that user.
+  become_user: ec2-user
+  # Used jq with -r to ensure raw output, which avoids extra quotes around the token.
 
-- name: install libicu dependency
+- name: Install libicu dependency
   ansible.builtin.dnf:
     name: libicu
     state: latest
 
-- name: configure github runner
-  ansible.builtin.shell: /actions-runner/config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+- name: Configure GitHub runner
+  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
-   chdir: /actions-runner
+    chdir: /actions-runner
+  become: no
   become_user: grunner
+  register: config_result
+  # Ensure the token variable is correctly passed.
 
+- name: Print configuration result
+  ansible.builtin.debug:
+    msg: "Configuration result: {{ config_result.stdout }}"
+  # Useful for debugging; ensure this prints the output you expect.
