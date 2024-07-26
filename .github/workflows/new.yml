@@ -1,8 +1,11 @@
 name: provision tool infra
 on: [push, workflow_dispatch]
 jobs:
-  provision:
+  DEV:
     runs-on: slef hosted
     steps:
-      - uses: actions/checkout@v4
-      - run: terraform init
+      - run:
+          pwd
+          hostname  
+          ls  
+          ip a
