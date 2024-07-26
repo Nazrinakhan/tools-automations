@@ -5,6 +5,10 @@
 - name: setup prompt
   ansible.builtin.shell: set-prompt github-runner
 
+- name: sdd github runner user
+  ansible.builtin.user:
+    name: grunner
+
 - name: Create github directory
   ansible.builtin.file:
     path: /actions-runner
@@ -31,6 +35,6 @@
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
-    become_user: ec2-user
+    become_user: grunner
 
 
