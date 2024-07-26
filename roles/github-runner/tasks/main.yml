@@ -32,13 +32,17 @@
   register: token
   become_user: ec2-user Token can be ec2 user as gh auth login done by ec2user
 
+- name: prink token
+  ansible.builtin.debug:
+    msg: "{{ token }}"
+
 - name: Install Libicu dependency
   ansible.builtin.dnf:
     name: libicu
     state: latest
 
 - name: configure github runner
-  ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  ansible.builtin.shell: echo ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
     become_user: grunner
