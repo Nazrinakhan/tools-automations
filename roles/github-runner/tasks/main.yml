@@ -44,7 +44,9 @@
 - name: configure github runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   chdir: /actions-runner
-  become: yes
-  become_user: grunner
+  args:
+    chdir: /actions-runner
+    become_user: grunner
+
 
 
