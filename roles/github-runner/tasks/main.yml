@@ -30,7 +30,7 @@
   ansible.builtin.shell: |
     gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/Nazrinakhan/actions/runners/registration-token | jq .token
   register: token
-  become_user: ec2-user Token can be ec2 user as gh auth login done by ec2user
+  become_user: ec2-user
 
 - name: prink token
   ansible.builtin.debug:
