@@ -5,7 +5,7 @@ resource "aws_instance" "tool" {
 
     tags = {
         Name = var.name
-     }
+   }
  }
 
 resource "aws_security_group" "tool-sg" {
