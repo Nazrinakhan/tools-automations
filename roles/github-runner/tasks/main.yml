@@ -45,7 +45,7 @@
   become: yes
   become_user: grunner
   ansible.builtin.shell:
-    cmd: echo ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+    cmd: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
     chdir: /actions-runner
 
 
