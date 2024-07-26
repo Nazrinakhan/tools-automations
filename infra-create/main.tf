@@ -9,8 +9,8 @@ resource "aws_instance" "tool" {
  }
 
 resource "aws_security_group" "tool-sg" {
-  name        = "${var.name}-sg
-  description = "Security group for ${var.name}"
+  name        = "${var.name}-sg"
+  description = "${var.name}-sg"
 
 
  egress {
