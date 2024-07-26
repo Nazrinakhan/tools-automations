@@ -41,12 +41,12 @@
     name: libicu
     state: latest
 
-- name: configure github runner
+- name: Configure Github Runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
-  chdir: /actions-runner
   args:
     chdir: /actions-runner
-    become_user: grunner
+  become_user: grunner
+
 
 
 
