@@ -9,7 +9,7 @@ resource "aws_instance" "tool" {
  }
 
 resource "aws_security_group" "tool-sg" {
-  name        = "${var.name}-sg${random_string.unique_id.result}"
+  name        = "${var.name}-sg
   description = "Security group for ${var.name}"
 
 
