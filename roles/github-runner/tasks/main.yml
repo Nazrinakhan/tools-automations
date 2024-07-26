@@ -42,9 +42,10 @@
     state: latest
 
 - name: configure github runner
-  ansible.builtin.shell: echo ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
-  args:
+  become: yes
+  become_user: grunner
+  ansible.builtin.shell:
+    cmd: echo ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
     chdir: /actions-runner
-    become_user: grunner
 
 
