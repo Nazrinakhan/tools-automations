@@ -9,4 +9,4 @@ jobs:
           hostname  
           ls  
           ip a
-          pwd
+

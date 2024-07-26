@@ -9,7 +9,7 @@ resource "aws_instance" "tool" {
     }
 }
 resource "aws_security_group" "tool-sg" {
-  name        = "{var.name}-sg${random_string.unique_id.result}"
+  name        = "${var.name}-sg${random_string.unique_id.result}"
   description = "Security group for ${var.name}"
 
 
@@ -28,7 +28,7 @@ resource "aws_security_group" "tool-sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
   tags = {
-    Name = "{var.name}-sg"
+    Name = "${var.name}-sg"
   }
 }
 
