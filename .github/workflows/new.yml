@@ -2,11 +2,11 @@ name: provision tool infra
 on: [push, workflow_dispatch]
 jobs:
   DEV:
-    runs-on: slef hosted
+    runs-on: self-hosted
     steps:
       - run:
           pwd
           hostname  
           ls  
           ip a
-          ls
+          pwd
