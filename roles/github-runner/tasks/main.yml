@@ -24,9 +24,22 @@
     owner: grunner
     group: grunner
 
+- name: Download GitHub Cli Repo
+  ansible.builtin.get_url:
+    url: https://cli.github.com/packages/rpm/gh-cli.repo
+    dest: /etc/yum.repos.d/gh-cli.repo
 
 - name: Grab Token
   ansible.builtin.shell: |
     gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/Nazrinakhan/actions/runners/registration-token | jq .token
   register: token
   become_user: ec2-user
+
+
+- name: Install github cli
+  ansible.builtin.dnf:
+    name: gh-cli
+    state: latest
+- name: Print token
+  ansible.builtin.debug:
+    msg: "{{ out }}"
