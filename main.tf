@@ -3,5 +3,5 @@ module "tool-infra-create" {
     source = "./infra-create"
     name = each.key
     instance_type = each.value.instance_type
-    policy_name   = eeach.value.policy_name
+    policy_name   = each.value.policy_name
   }
