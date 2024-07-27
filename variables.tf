@@ -8,7 +8,6 @@
                 "AdministratorAccess"
             ]
           }
-        vault = {
 
 
         }
