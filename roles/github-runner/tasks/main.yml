@@ -47,16 +47,12 @@
   register: runner_count
   become_user: ec2-user
 
-- name: debug
-  debug:
-    msg: "{{ runner_count }}"
-
 - name: Configure Github Runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
   become_user: grunner
-  when: runner_count.stdout == 0
+  when: runner_count.stdout == "0"
 
 - name: Install Runner service
   ansible.builtin.shell: ./svc.sh install grunner ; ./svc.sh start
