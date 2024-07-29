@@ -43,7 +43,7 @@ resource "aws_security_group" "tool-sg" {
 
 
 
-resource "aws_route53_record" "record" "record-public"{
+resource "aws_route53_record" "record-public"{
   zone_id = var.host_zone_id
   name    = "$(var.name)"
   type    = "A"
