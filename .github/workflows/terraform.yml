@@ -2,7 +2,10 @@ name: provision tool infra
 on: [push, workflow_dispatch]
 jobs:
   provision:
-    runs-on: slef hosted
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+      - name: Terraform Init
       - run: terraform init
+      - name: Terraform Apply
+      - run: terraform apply -auto-approve
