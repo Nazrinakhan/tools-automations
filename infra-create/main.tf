@@ -51,7 +51,7 @@ resource "aws_route53_record" "record-public"{
   records = [aws_instance.tool.private_ip]
 }
 
-resource "aws_route53_record" "record" "record-private"{
+resource "aws_route53_record" "record-private"{
   zone_id = var.host_zone_id
   name    = "$(var.name)-internal"
   type    = "A"
