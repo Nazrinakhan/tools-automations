@@ -17,6 +17,7 @@
         }
   }
 
-variable "hosted_zone_id" {
+    variable "hosted_zone_id" {
     default = "Z03416193I6UORBOGZ0Y"
-    }
+
+  }
