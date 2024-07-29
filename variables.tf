@@ -8,8 +8,12 @@
                 "AdministratorAccess"
             ]
           }
-
-
+         vault = {
+              instance_type = "t3.small"
+              policy_name   = []
+              ports = {
+                vault = 8200
+                }
         }
   }
 

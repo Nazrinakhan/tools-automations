@@ -25,6 +25,11 @@ resource "aws_iam_instance_profile" "instance-profile" {
   role = aws_iam_role.role.name
 }
 
+resource "aws_iam_instance_profile" "instance-profile" {
+  name = "${var.name}-role"
+  role = aws_iam_role.role.name
+}
+
 resource "aws_iam_role_policy_attachment" "policy-attach" {
     count       = length(var.policy_name)
     role       = aws_iam_role.role.name
