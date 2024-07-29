@@ -52,7 +52,7 @@ resource "aws_route53_record" "record-public"{
 }
 
 resource "aws_route53_record" "record-private"{
-  zone_id = var.host_zone_id
+  zone_id = var.hosted_zone_id
   name    = "$(var.name)-internal"
   type    = "A"
   ttl     = 300
