@@ -1,0 +1,10 @@
+name: Run Vault Setup
+on: [push, workflow_dispatch]
+jobs:
+  provision:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Vault Setup
+      - run:  ansible-playbook -i vault-internal.naifah.online, tool-setup.yml -e ansible_user=ec2-user -e ansible_password=DevOps321 -e tool_name=vault
+
