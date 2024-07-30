@@ -48,6 +48,13 @@
   register: runner_count
   become_user: ec2-user
 
+- name: Get the runner status
+  ansible.builtin.shell: |
+    gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /orgs/Nazrinakhan/actions/runners | jq '.runners[] | select(.name == "ec2") | .status' |xargs
+  register: runner_status
+  become_user: ec2-user
+  when: runner_count.stdout == 0 or runner_status == "offline"
+
 - name: Configure Github Runner
   ansible.builtin.shell: ./config.sh --url https://github.com/Nazrinakhan --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
